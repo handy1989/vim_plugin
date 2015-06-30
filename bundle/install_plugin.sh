@@ -12,6 +12,7 @@ https://github.com/ervandew/supertab.git
 https://github.com/vim-scripts/taglist.vim.git 
 https://github.com/bling/vim-airline.git 
 https://github.com/gerw/vim-latex-suite.git 
+https://github.com/davidhalter/jedi-vim.git
 )
 
 for((i=0;i<${#plugin_urls[@]};i=$(($i+1))))
