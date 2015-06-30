@@ -1,13 +1,24 @@
 #!/bin/bash
-git clone git://github.com/tpope/vim-surround.git  || exit 1
-git clone git://github.com/jiangmiao/auto-pairs.git || exit 1
-git clone https://github.com/vim-scripts/cscope.vim.git || exit 1
-git clone https://github.com/kien/ctrlp.vim.git || exit 1
-git clone https://github.com/vim-scripts/EasyGrep.git || exit 1
-git clone https://github.com/vim-scripts/a.vim.git || exit 1
-git clone https://github.com/vim-scripts/OmniCppComplete.git || exit 1
-git clone https://github.com/scrooloose/nerdtree.git || exit 1
-git clone https://github.com/ervandew/supertab.git || exit 1
-git clone https://github.com/vim-scripts/taglist.vim.git || exit 1
-git clone https://github.com/bling/vim-airline.git || exit 1
-git clone https://github.com/gerw/vim-latex-suite.git || exit 1
+plugin_urls=(
+git://github.com/tpope/vim-surround.git  
+git://github.com/jiangmiao/auto-pairs.git 
+https://github.com/vim-scripts/cscope.vim.git 
+https://github.com/kien/ctrlp.vim.git 
+https://github.com/vim-scripts/EasyGrep.git 
+https://github.com/vim-scripts/a.vim.git 
+https://github.com/vim-scripts/OmniCppComplete.git 
+https://github.com/scrooloose/nerdtree.git 
+https://github.com/ervandew/supertab.git 
+https://github.com/vim-scripts/taglist.vim.git 
+https://github.com/bling/vim-airline.git 
+https://github.com/gerw/vim-latex-suite.git 
+)
+
+for((i=0;i<${#plugin_urls[@]};i=$(($i+1))))
+{
+    git_url=${plugin_urls[$i]}
+    plugin_name=${git_url##*/}
+    plugin_name=${plugin_name%.git}
+    [ -d $plugin_name ] && continue
+    git clone $git_url || exit 1
+}
